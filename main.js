@@ -21,6 +21,31 @@
 
 })();
 
+(function(){ //funcion que termina las barras, recibiendo los parametros y ubicandolas en el tablero
+	self.Bar= function(x,y,width,height,board){
+		this.x=x;
+		this.y=y;
+		this.width=width;
+		this.height=height;
+		this.board=board;
+		this.board.bars.push(this);
+		this.kind="rectangle";
+		this.speed=20;
+	}
+
+    self.Bar.prototype={// determina la funcion que tendras las barras dentro del tablero y la velocidad recibida de la funcion anterior
+    	down: function(){
+            this.y +=this.speed;
+    	},
+    	up: function(){
+    		this.y -= this.speed;
+
+    	},
+    	toString: function(){
+    		return "x: "+this.x +"y: "+this.y;
+    	}
+    }
+})();
 
 (function(){ //Funcion que recibe el elementos canvas y dibuja el tablero basado en los datos asignados
 	self.BoardView= function(canvas,board){
