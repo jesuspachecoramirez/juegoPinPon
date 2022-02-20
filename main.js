@@ -1,6 +1,6 @@
 (function(){ //función que crea y recoge los datos del pizarron o fondo que se utilizara
   self.Board = function(width,height){
-  	//variables que se reciben y se utilizan en el transcurso del programa
+  	//atributos que se reciben y se utilizan en el transcurso del programa
     this.width= width;
     this.height=height;
     this.playing=false;
@@ -62,6 +62,13 @@
 
        
 	}
+	 self.Ball.prototype={
+        	move: function(){
+        		this.x +=(this.speed_x * this.direction);
+        		this.y +=(this.speed_y);
+        	},
+        
+        }
 	
 })();
 
@@ -102,11 +109,11 @@
     }
     function draw(ctx, element){// funcion swicht que se encarga de recibir los parametros de los elementos que seran dibujados
     	switch(element.kind){
-    	  case "rectangle":
+    	  case "rectangle"://se asigna que si la figura es un rectangulo se realizara el proceso de dibujo
     	    ctx.fillRect(element.x,element.y,element.width,element.height);
     		   break;
 
-          case "circle": 
+          case "circle": //se asigna a la figura circulo una posicion y tamaño en el tablero
             ctx.beginPath();
             ctx.arc(element.x,element.y,element.radius,0,7);
             ctx.fill();
@@ -144,7 +151,12 @@ document.addEventListener("keydown",function(ev){//se crea un evento donde cada 
 			ev.preventDefault();
 			//s
 			bar_2.down();
+		}else if(ev.keyCode===32){// se especifica que con la tecla designada el juego entre en pausa
+			ev.preventDefault();
+			board.playing = !board.playing;
 		}
+
+		
 
 
 
