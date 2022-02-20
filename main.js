@@ -97,15 +97,34 @@
 
  var board = new Board(800,400);// se brindan los datos de tamaño para el tablero
  var canvas = document.getElementById("canvas");//se llama el objeto canvas por su id
+ var bar = new Bar(20,100,40,100,board);//se brindan los datos del tamaño y posicion en el tablero de una de las barras
+ var bar_2 = new Bar(735,100,40,100,board);//se brindan los datos del tamaño y posicion en el tablero de una de la siguiente barra
  var board_view = new BoardView(canvas,board);//aplica y envia los datos recibidos
 
 
+document.addEventListener("keydown",function(ev){//se crea un evento donde cada vez que se presione la tecla realizara el proceso
+		
+		if(ev.keyCode==38){
+			ev.preventDefault();
+			bar.up();
+		}
+		else if(ev.keyCode==40){
+			ev.preventDefault();
+			bar.down();
+		}
+		else if(ev.keyCode==87){
+			ev.preventDefault();
+			//w
+			bar_2.up();
+		}else if(ev.keyCode==83){
+			ev.preventDefault();
+			//s
+			bar_2.down();
+		}
 
 
 
 
-
-});
 
 board_view.draw();// comienza el dibujo cuando la funcion controller envia la orden
  window.requestAnimationFrame(controller);
